@@ -16,7 +16,7 @@
      };
 
      return (
-       <section id="contact" style={{ padding: '20px', backgroundColor: 'purple', color: 'white' }}>
+       <section id="contact" style={{ height: '100vh', paddingTop: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'purple', color: 'white' }}>
          <h1>Contact Us</h1>
          <form onSubmit={handleSubmit}>
            <input
