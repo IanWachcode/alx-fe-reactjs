@@ -1,0 +1,20 @@
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
+import './App.css';
+
+function App() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>🍲 Recipe Sharing App</h1>
+
+      <AddRecipeForm />
+
+      <hr />
+
+      <RecipeList />
+    </div>
+  );
+}
+
+export default App;
+
