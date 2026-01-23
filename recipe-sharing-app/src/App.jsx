@@ -10,6 +10,9 @@ function App() {
       <h1>🍲 Recipe Sharing App</h1>
 
       <AddRecipeForm />
+      <Routes>
+        <Route path="/recipe/:recipeId" element={<RecipeDetailsWrapper />} />
+      </Routes>
 
       <hr />
 
