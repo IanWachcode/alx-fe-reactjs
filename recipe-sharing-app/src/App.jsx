@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
@@ -13,6 +13,7 @@ const RecipeDetailsWrapper = () => {
 
 function App() {
   return (
+    <Router>
       <div style={{ padding: '20px' }}>
         <h1>🍲 Recipe Sharing App</h1>
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/recipe/:recipeId" element={<RecipeDetailsWrapper />} />
         </Routes>
       </div>
+      </Router>
   );
 }
 
