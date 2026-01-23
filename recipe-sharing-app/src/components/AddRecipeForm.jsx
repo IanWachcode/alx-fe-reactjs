@@ -33,7 +33,7 @@ const AddRecipeForm = () => {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <br />
+      <br /><br />
 
       <textarea
         placeholder="Recipe description"
@@ -41,7 +41,7 @@ const AddRecipeForm = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <br />
+      <br /><br />
 
       <button type="submit">Add Recipe</button>
     </form>
