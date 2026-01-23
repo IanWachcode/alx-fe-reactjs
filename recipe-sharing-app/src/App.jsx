@@ -9,16 +9,23 @@ import './App.css';
 
 function App() {
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>🍲 Recipe Sharing App</h1>
-      <Routes>
-        <Route path="/recipe/:recipeId" element={<RecipeDetailsWrapper />} />
-      </Routes>
+      <div style={{ padding: '20px' }}>
+        <h1>🍲 Recipe Sharing App</h1>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <AddRecipeForm />
+                <RecipeList />
+              </>
+            }
+          />
 
-      <hr />
-      <AddRecipeForm />
-      <RecipeList />
-    </div>
+          {/* Recipe details page */}
+          <Route path="/recipe/:recipeId" element={<RecipeDetailsWrapper />} />
+        </Routes>
+      </div>
   );
 }
 
