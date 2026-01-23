@@ -5,12 +5,17 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import './App.css';
 
+const RecipeDetailsWrapper = () => {
+  const { recipeId } = useParams();
+  return <RecipeDetails recipeId={Number(recipeId)} />;
+}
 
 
 function App() {
   return (
       <div style={{ padding: '20px' }}>
         <h1>🍲 Recipe Sharing App</h1>
+
         <Routes>
           <Route
             path="/"
@@ -30,9 +35,3 @@ function App() {
 }
 
 export default App;
-
-const RecipeDetailsWrapper = () => {
-  const { recipeId } = useParams();
-  return <RecipeDetails recipeId={Number(recipeId)} />;
-}
-
