@@ -4,6 +4,8 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/SearchBar';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 import './App.css';
 
 const RecipeDetailsWrapper = () => {
@@ -11,23 +13,25 @@ const RecipeDetailsWrapper = () => {
   return <RecipeDetails recipeId={Number(recipeId)} />;
 }
 
-
 function App() {
   return (
+    
     <Router>
       <div style={{ padding: '20px' }}>
         <h1>🍲 Recipe Sharing App</h1>
         <SearchBar/>
-
+        <FavoritesList/>
+        <RecommendationsList/>
         <Routes>
           <Route
             path="/"
             element={
               <>
                 <AddRecipeForm />
-                <RecipeList />
+                <RecipeList />                
               </>
             }
+            
           />
 
           {/* Recipe details page */}
