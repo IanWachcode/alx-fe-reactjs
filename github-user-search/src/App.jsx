@@ -1,4 +1,5 @@
 import './App.css'
+import Search from './components/Search'
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <div style={{padding: "20px"}}>
         <h1>GitHub User Search</h1> 
         <p>Search for GitHub users using the GitHub API</p>
+        <Search/>
       </div>
       
     </>
