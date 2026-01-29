@@ -20,8 +20,7 @@ function Search() {
         try {
             const data = await  fetchUserData(username);
             setUser(data);
-        } catch(err) {
-            console.log(err);
+        } catch {
             setError(true);
         } finally {
             setLoading(false);
@@ -39,9 +38,13 @@ function Search() {
                 />
                 <button type="submit">Search</button>
             </form>
+
             {loading && <p>Loading...</p>}
-            {error && <p>Error fetching user data</p>}
+
+            {error && <p>Looks like we cant find the user</p>}
+            
             {user && (
+
             <div>
                 <img src={user.avatar_url}
                 alt={user.login}
