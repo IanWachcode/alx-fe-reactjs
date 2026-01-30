@@ -1,61 +1,119 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { searchUsers } from "../services/githubService";
 
 
 function Search() {
-    const [username, setUsername] = useState("");
-    const [user, setUser] = useState(null);
+    const [query, setQuery] = useState("");
+    const [location, setLocation] = useState("");
+    const [minRepos, setMinRepos] = useState("");
+    const [users, setUsers] = useState([]);
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (!username) return;
-
         setLoading(true);
         setError(false);
-        setUser(null);
+        setUsers([]);
+        setPage(1);
 
-        try {
-            const data = await  fetchUserData(username);
-            setUser(data);
+        try{
+            const data = await searchUsers(query, location, minRepos, 1);
+            setUsers(data.items);
         } catch {
             setError(true);
         } finally {
             setLoading(false);
-        }
+        };
     };
+
+        const loadMore = async () => {
+            const nextPage = page + 1;
+            setPage(nextPage);
+
+            try {
+                const data = await searchUsers(query, location, minRepos, nextPage);
+                setUsers((prev) => [...prev, ...data.items]);
+            } catch {
+                setError(true);
+            }
+        };
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form 
+            onSubmit={handleSubmit}
+            className="grid gap-3 mb-6"
+            >
                 <input 
                 type = "text"
-                placeholder="Enter GitHub username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Search username or keyword"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="border rounded-lg px-3 py-2"
                 />
-                <button type="submit">Search</button>
+
+                <input
+                type="text"
+                placeholder="location (e.g. Kenya)"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="border rounded-lg px-3 py-2"
+                />
+
+                <input 
+                type="number"
+                placeholder="Minimum repositories"
+                value={minRepos}
+                onChange={(e) => setMinRepos(e.target.value)}
+                className="border rounded-lg px-3 py-2"
+                />
+
+
+                <button 
+                type="submit"
+                className="bg-black text-white py-2 rounded-lg hover:bg-gray-800"
+                >
+                    Search
+                </button>
             </form>
 
             {loading && <p>Loading...</p>}
 
             {error && <p>Looks like we cant find the user</p>}
             
-            {user && (
 
-            <div>
+            <div className="grid gap-4">
+                {users.map((user)=>(
+                    <div
+                    key={user.id}
+                    className="flex items-center gap-4 border p-3 rounded-lg"
+                    >
                 <img src={user.avatar_url}
                 alt={user.login}
-                width="100"
+                className="w-12 h-12 rounded-full"
                 />
-                <h3>{user.name || user.login}</h3>
-                <a href={user.html_url} target="_blank">
-                    View GitHub Profile
-                </a>
-            </div>
+                <div>
+                    <p className="font-semibold">{user.login}</p>
+                    <a 
+                    href={user.html_url}
+                    target="_blank"
+                    className="text-blue-600 text-sm"
+                    >View Profile </a>
+                </div>
+                </div>
+                ))}
+
+            {users.length > 0 && !loading && (
+                <button 
+                onClick={loadMore}
+                className="mt-4 w-full border py-2 rounded-lg hover:bg-gray-100"
+                >
+                    Load More
+                </button>
             )}
+        </div>
         </div>
     );
 }
