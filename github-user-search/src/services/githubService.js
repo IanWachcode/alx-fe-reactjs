@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const BASE_URL = "https://api.github.com";
 
 export const searchUsers = async (
@@ -16,26 +18,24 @@ export const searchUsers = async (
     q += ` repos:>=${minRepos}`;
   }
 
-  const response = await fetch(
-    `${BASE_URL}/search/users?q=${encodeURIComponent(q)}&page=${page}&per_page=5`
+  const response = await axios.get(
+    `${BASE_URL}/search/users`,
+    {
+      params: {
+        q,
+        page,
+        per_page: 5,
+      },
+    }
   );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch users");
-  }
-
-  return response.json();
+  return response.data;
 };
 
 export const fetchUserData = async (username) => {
-  const response = await fetch(
+  const response = await axios.get(
     `${BASE_URL}/users/${username}`
   );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch user data");
-  }
-
-  return response.json();
+  return response.data;
 };
 
