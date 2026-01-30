@@ -1,32 +1,41 @@
-import axios from "axios";
+const BASE_URL = "https://api.github.com";
 
 export const searchUsers = async (
-    query,
-    location,
-    minRepos,
-    page = 1
+  query,
+  location,
+  minRepos,
+  page = 1
 ) => {
-    let q = query || "";
+  let q = query || "";
 
-    if (location) {
-        q += `location:${location}`;
-    }
+  if (location) {
+    q += ` location:${location}`;
+  }
 
-    const response = await axios.get(
-        "https://api.github.com/search/users",
-        {
-            params: {
-                q, page, per_page: 5,},
-            }
-        );
+  if (minRepos) {
+    q += ` repos:>=${minRepos}`;
+  }
 
-        return response.data;
-        };
-
-export const fetchUserDetails = async (username) => {
-  const response = await axios.get(
-    `https://api.github.com/users/${username}`
+  const response = await fetch(
+    `${BASE_URL}/search/users?q=${encodeURIComponent(q)}&page=${page}&per_page=5`
   );
-  return response.data;
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch users");
+  }
+
+  return response.json();
+};
+
+export const fetchUserData = async (username) => {
+  const response = await fetch(
+    `${BASE_URL}/users/${username}`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch user data");
+  }
+
+  return response.json();
 };
 
