@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AddRecipe from "./pages/AddRecipe";
 import RecipeDetails from "./pages/RecipeDetails";
+import "./index.css";
 
 function App() {
   return (
