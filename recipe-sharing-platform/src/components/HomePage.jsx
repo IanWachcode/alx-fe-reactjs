@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import recipesData from "../data.json";
 
 function HomePage() {
-  const [recipes] = useState(recipesData);
+  const [recipes, setRecipes] = useState([]);
+
+   
+useEffect(() => {
+
+  setTimeout(() => {
+  setRecipes(recipesData);
+  }, 0);
+}, []);
 
   return (
     <div className="p-6">
@@ -14,7 +22,7 @@ function HomePage() {
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition transform duration-300 p-4"
+            className="bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition duration-300 p-4"
           >
             <img
               src={recipe.image}
