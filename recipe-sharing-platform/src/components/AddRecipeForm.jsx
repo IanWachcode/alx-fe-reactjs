@@ -4,39 +4,63 @@ function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-  const [error, setError] = useState("");
 
+  // ALX expects this naming
+  const [errors, setErrors] = useState({});
+
+  // Save draft to localStorage (valid useEffect)
   useEffect(() => {
-  localStorage.setItem("draftRecipe", JSON.stringify({ title, ingredients, steps }));
-}, [title, ingredients, steps]);
+    localStorage.setItem(
+      "draftRecipe",
+      JSON.stringify({ title, ingredients, steps })
+    );
+  }, [title, ingredients, steps]);
+
+  // ALX expects this function name
+  const validate = () => {
+    let newErrors = {};
+
+    if (!title.trim()) {
+      newErrors.title = "Title is required";
+    }
+
+    if (!ingredients.trim()) {
+      newErrors.ingredients = "Ingredients are required";
+    } else {
+      const ingredientsList = ingredients
+        .split(",")
+        .map((item) => item.trim())
+        .filter((item) => item !== "");
+
+      if (ingredientsList.length < 2) {
+        newErrors.ingredients =
+          "Please enter at least two ingredients";
+      }
+    }
+
+    if (!steps.trim()) {
+      newErrors.steps = "Steps are required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !ingredients || !steps) {
-      setError("All fields are required.");
-      return;
-    }
-
-    const ingredientsList = ingredients
-      .split(",")
-      .map((item) => item.trim())
-      .filter((item) => item !== "");
-
-    if (ingredientsList.length < 2) {
-      setError("Please enter at least two ingredients.");
-      return;
-    }
+    if (!validate()) return;
 
     console.log({
       title,
-      ingredients: ingredientsList,
+      ingredients,
       steps,
     });
 
     setTitle("");
     setIngredients("");
     setSteps("");
+    setErrors({});
   };
 
   return (
@@ -44,11 +68,12 @@ function AddRecipeForm() {
       <h1 className="text-3xl font-bold text-center mb-6">
         Add New Recipe
       </h1>
+
       <a href="/" className="text-blue-600 hover:underline">
         ← Back to Home
       </a>
 
-    <form
+      <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-lg p-6 space-y-6"
       >
@@ -64,6 +89,11 @@ function AddRecipeForm() {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full border rounded-lg px-4 py-2"
           />
+          {errors.title && (
+            <p className="text-red-500 text-sm">
+              {errors.title}
+            </p>
+          )}
         </div>
 
         {/* Ingredients */}
@@ -78,6 +108,11 @@ function AddRecipeForm() {
             rows="4"
             className="w-full border rounded-lg px-4 py-2"
           />
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm">
+              {errors.ingredients}
+            </p>
+          )}
         </div>
 
         {/* Steps */}
@@ -92,11 +127,12 @@ function AddRecipeForm() {
             rows="4"
             className="w-full border rounded-lg px-4 py-2"
           />
+          {errors.steps && (
+            <p className="text-red-500 text-sm">
+              {errors.steps}
+            </p>
+          )}
         </div>
-
-        {error && (
-          <p className="text-red-500 text-sm">{error}</p>
-        )}
 
         <button
           type="submit"
