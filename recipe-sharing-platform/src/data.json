@@ -3,18 +3,68 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300"
+    "image": "https://via.placeholder.com/300",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g Pecorino cheese",
+      "50g Parmesan cheese",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Cook the spaghetti in a large pot of salted boiling water until al dente.",
+      "In a separate pan, cook the pancetta until crispy. Remove from heat and set aside.",
+      "In a bowl, beat the eggs and mix in the Pecorino and Parmesan cheeses. Season with black pepper.",
+      "Drain the spaghetti, reserving some of the cooking water. Add the spaghetti to the pan with pancetta and toss to combine.",
+      "Remove the pan from heat and quickly pour in the egg and cheese mixture, tossing vigorously to create a creamy sauce. If the sauce is too thick, add a little of the reserved cooking water to loosen it.",
+      "Serve immediately with extra cheese and black pepper on top."
+    ] 
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/300"
+    "image": "https://via.placeholder.com/300",
+    "ingredients": [
+      "500g boneless chicken thighs",
+      "200g yogurt",
+      "2 tbsp tikka masala spice mix",
+      "1 onion, finely chopped",
+      "2 garlic cloves, minced",
+      "1 tbsp ginger, grated",
+      "400g canned tomatoes",
+      "200ml heavy cream",
+      "Fresh cilantro for garnish"
+    ],
+    "instructions": [
+      "Marinate the chicken in yogurt and tikka masala spice mix for at least 1 hour, preferably overnight.",
+      "Grill the chicken until cooked through and slightly charred. Set aside.",
+      "In a pan, sauté the onion, garlic, and ginger until soft. Add the canned tomatoes and cook until the sauce thickens.",
+      "Stir in the heavy cream and add the grilled chicken to the sauce. Simmer for 10-15 minutes until the chicken is fully coated and the flavors meld together.",
+      "Garnish with fresh cilantro and serve with rice or naan bread."
+    ] 
   },
   {
     "id": 3,
     "title": "Beef Stir Fry",
     "summary": "Tender beef strips cooked with fresh vegetables in a savory sauce.",
-    "image": "https://via.placeholder.com/300"
+    "image": "https://via.placeholder.com/300",
+    "ingredients": [
+      "400g beef sirloin, thinly sliced",
+      "2 tbsp soy sauce",
+      "1 tbsp oyster sauce",
+      "1 tbsp cornstarch",
+      "1 bell pepper, sliced",
+      "1 broccoli head, cut into florets",
+      "2 garlic cloves, minced",
+      "1 tbsp vegetable oil"
+    ],
+    "instructions": [
+      "In a bowl, mix the beef with soy sauce, oyster sauce, and cornstarch. Let it marinate for 15 minutes.",
+      "Heat the vegetable oil in a wok or large pan over high heat. Add the beef and stir-fry until browned. Remove from the pan and set aside.",
+      "In the same pan, add the garlic and stir-fry for 30 seconds. Add the bell pepper and broccoli, and stir-fry until tender-crisp."
+    ]
   }
-]
+] 
