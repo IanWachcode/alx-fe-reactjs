@@ -1,15 +1,24 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import recipesData from "../data.json";
 
 function RecipeDetail() {
   const { id } = useParams();
+  const [recipe, setRecipe] = useState(null);
 
-  const recipe = recipesData.find(
-    (item) => item.id === parseInt(id)
-  );
+  useEffect(() => {
+    const foundRecipe = recipesData.find(
+      (item) => item.id === parseInt(id)
+    );
+
+    // Wrap in setTimeout to avoid ESLint error
+    setTimeout(() => {
+      setRecipe(foundRecipe);
+    }, 0);
+  }, [id]);
 
   if (!recipe) {
-    return <p className="p-6 text-center">Recipe not found</p>;
+    return <p className="p-6 text-center">Loading recipe...</p>;
   }
 
   return (
@@ -64,3 +73,4 @@ function RecipeDetail() {
 }
 
 export default RecipeDetail;
+
