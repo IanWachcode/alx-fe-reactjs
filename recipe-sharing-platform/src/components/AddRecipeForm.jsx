@@ -75,7 +75,7 @@ function AddRecipeForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-6"
+        className="bg-white shadow-lg rounded-lg p-4 md:p-6 space-y-6"
       >
         {/* Title */}
         <div>
@@ -106,7 +106,7 @@ function AddRecipeForm() {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             rows="4"
-            className="w-full border rounded-lg px-4 py-2"
+            className="w-full border rounded-lg px-3 md:px-4 py-2 md:py-3"
           />
           {errors.ingredients && (
             <p className="text-red-500 text-sm">
@@ -125,7 +125,7 @@ function AddRecipeForm() {
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
             rows="4"
-            className="w-full border rounded-lg px-4 py-2"
+            className="w-full border rounded-lg px-3 md:px-4 py-2 md:py-3"
           />
           {errors.steps && (
             <p className="text-red-500 text-sm">
@@ -136,7 +136,7 @@ function AddRecipeForm() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg"
+          className="w-full bg-blue-600 text-white py-2 md:py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300"
         >
           Submit Recipe
         </button>
