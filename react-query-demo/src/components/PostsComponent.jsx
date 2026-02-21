@@ -1,19 +1,31 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 
+const fetchPosts = async () => {
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
+  return response.data;
+};
+
 function PostsComponent() {
-  // useQuery parameters: queryKey (must be array in v5), queryFn
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["posts"], // unique key for caching (must be array in v5)
-    queryFn: async () => {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-      return res.data;
-    }
+  const {
+    data,
+    isLoading,
+    error,       
+    refetch,
+  } = useQuery("posts", fetchPosts, {
+    staleTime: 5000, // demonstrates caching
   });
 
-  if (isLoading) return <p>Loading posts...</p>;
-  if (isError) return <p>Oops! Something went wrong.</p>;
+  if (isLoading) {
+    return <p>Loading posts...</p>;
+  }
+
+  if (error) {
+    return <p>Error fetching posts.</p>;
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-4">
