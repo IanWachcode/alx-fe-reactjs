@@ -28,7 +28,7 @@ function App() {
         </Route>
 
         {/* Dynamic route example */}
-        <Route path="/post/:postId" element={<div>Dynamic Post Page</div>} />
+        <Route path="/post/:postId" element={<post/>} />
 
         {/* Catch-all for 404 */}
         <Route path="*" element={<div>Page Not Found</div>} />
