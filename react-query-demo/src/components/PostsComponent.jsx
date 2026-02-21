@@ -13,7 +13,7 @@ function PostsComponent() {
   const {
     data,
     isLoading,
-    error,       
+    isError,       
     refetch,
   } = useQuery("posts", fetchPosts, {
     staleTime: 5000, // demonstrates caching
@@ -23,7 +23,7 @@ function PostsComponent() {
     return <p>Loading posts...</p>;
   }
 
-  if (error) {
+  if (isError) {
     return <p>Error fetching posts.</p>;
   }
 
