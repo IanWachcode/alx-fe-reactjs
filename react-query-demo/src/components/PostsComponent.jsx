@@ -18,6 +18,9 @@ function PostsComponent() {
     refetch,
   } = useQuery("posts", fetchPosts, {
     staleTime: 5000, // demonstrates caching
+    cacheTime: 10000, // demonstrates caching
+    refetchOnWindowFocus: true, // prevents refetching on window focus
+    keepPreviousData: true
   });
 
   if (isLoading) {
