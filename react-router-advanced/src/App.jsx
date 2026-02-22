@@ -9,7 +9,6 @@ import Post from "./components/Post";
 
 function App() {
   return (
-    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -34,7 +33,6 @@ function App() {
         {/* Catch-all for 404 */}
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
-    </Router>
   );
 }
 
