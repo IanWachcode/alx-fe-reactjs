@@ -1,7 +1,5 @@
 function ProfileSettings() {
-  return (
-    <div>This is the profile settings page.</div>
-    );
-    }
+  return <h2>Profile Settings</h2>;
+}
 
 export default ProfileSettings;

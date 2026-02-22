@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import ProfileDetails from "./components/ProfileDetails";
@@ -13,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+
+        {/* Dynamic route example */}
         <Route path="/post/:postId" element={<Post />} />
 
         {/* Protected profile route */}
@@ -28,9 +30,6 @@ function App() {
           <Route path="details" element={<ProfileDetails />} />
           <Route path="settings" element={<ProfileSettings />} />
         </Route>
-
-        {/* Dynamic route example */}
-        <Route path="/post/:postId" element={<post/>} />
 
         {/* Catch-all for 404 */}
         <Route path="*" element={<div>Page Not Found</div>} />

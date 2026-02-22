@@ -1,7 +1,5 @@
 function ProfileDetails() {
-  return (
-    <div>This is the profile details page.</div>
-    );
-    }
+  return <h2>Profile Details</h2>;
+}
 
 export default ProfileDetails;
