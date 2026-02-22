@@ -1,27 +1,46 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
-import Login from "./components/Login";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { BrowserRouter, Routes, Route, Link, Router } from 'react-router-dom'
+import './App.css'
+import Home from './components/Home'
+import About from './components/About'
+import Profile from './components/Profile'
+import Login from './components/Login'
+import BlogPost from './components/BlogPost'
+import ProtectedRoute from './components/ProtectedRoute'
+
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+    <Router>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/profile">Profile</Link>
+        <Link to="/blog/1">Blog  Post 1</Link>
+      </nav>
 
-      <Route path="/post/:postId" element={<Post />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
 
-      <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />}>
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
+        <Route path="/profile"
+        element={
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+        }
+        >
+          
         </Route>
-      </Route>
-    </Routes>
+
+        <Route path="/blog/:id" element={<BlogPost />}  />
+
+        <Route path="login" element={<Login />}  />
+      </Routes>
+    </Router>
+
   );
+    
+
 }
 
 export default App;

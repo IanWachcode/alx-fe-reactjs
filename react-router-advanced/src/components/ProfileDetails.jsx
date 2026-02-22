@@ -1,5 +1,5 @@
-function ProfileDetails() {
-  return <h2>Profile Details</h2>;
-}
+const ProfileDetails = () => {
+    return <h3>Profile Details Section</h3>
+};
 
 export default ProfileDetails;
