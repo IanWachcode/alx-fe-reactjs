@@ -5,6 +5,7 @@ import ProfileDetails from "./components/ProfileDetails";
 import ProfileSettings from "./components/ProfileSettings";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Post from "./components/Post";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/post/:postId" element={<Post />} />
 
         {/* Protected profile route */}
         <Route
