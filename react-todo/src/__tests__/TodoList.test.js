@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import TodoList from '../components/TodoList';
 
 test('renders TodoList with initial todos', () => {
@@ -8,26 +7,30 @@ test('renders TodoList with initial todos', () => {
   expect(screen.getByText('Build Todo')).toBeInTheDocument();
 });
 
-test('adds new todo', async () => {
-  const user = userEvent.setup();
+test('adds new todo', () => {
   render(<TodoList />);
   const input = screen.getByTestId('todo-input');
-  await user.type(input, 'Test Todo{enter}');
+
+  fireEvent.change(input, { target: { value: 'Test Todo' } });
+  fireEvent.submit(input.closest('form'));
+
   expect(screen.getByText('Test Todo')).toBeInTheDocument();
 });
 
-test('toggles todo completion', async () => {
-  const user = userEvent.setup();
+test('toggles todo completion', () => {
   render(<TodoList />);
   const todoItem = screen.getByTestId('todo-1');
-  await user.click(todoItem);
+
+  fireEvent.click(todoItem);
+
   expect(todoItem).toHaveStyle('text-decoration: line-through');
 });
 
-test('deletes todo', async () => {
-  const user = userEvent.setup();
+test('deletes todo', () => {
   render(<TodoList />);
   const deleteBtn = screen.getByTestId('delete-1');
-  await user.click(deleteBtn);
+
+  fireEvent.click(deleteBtn);
+
   expect(screen.queryByTestId('todo-1')).not.toBeInTheDocument();
 });
