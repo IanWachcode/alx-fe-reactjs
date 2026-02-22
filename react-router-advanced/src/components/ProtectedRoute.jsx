@@ -2,8 +2,10 @@ import { Navigate, Outlet } from "react-router-dom";
 
 function ProtectedRoute() {
   const isAuthenticated = true;
-  
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return <Outlet />;
 }
- 
 export default ProtectedRoute;
