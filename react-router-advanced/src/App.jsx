@@ -17,8 +17,8 @@ function App() {
         <Route path="/post/:postId" element={<Post />} />
 
         {/* Protected profile route */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/profile/*" element={<Profile />} />
+        <Route path="/profile" element={<ProtectedRoute />}>
+          <Route index element={<Profile />} />
           <Route path="details" element={<ProfileDetails />} />
           <Route path="settings" element={<ProfileSettings />} />
         </Route>
