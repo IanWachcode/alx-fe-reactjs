@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddTodoForm from "./AddTodoForm";
 
 function TodoList() {
   const [todos, setTodos] = useState([
@@ -40,13 +41,11 @@ function TodoList() {
     <div>
       <h1>Todo List</h1>
 
-      <form onSubmit={addTodo}>
-        <input
-          data-testid="todo-input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-      </form>
+      <AddTodoForm
+        addTodo={addTodo}
+        input={input}
+        setInput={setInput}
+      />
 
       <ul>
         {todos.map((todo) => (
