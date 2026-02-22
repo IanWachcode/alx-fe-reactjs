@@ -5,7 +5,7 @@ import ProfileDetails from "./components/ProfileDetails";
 import ProfileSettings from "./components/ProfileSettings";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Post from "./components/Post";
+import Post from "./components/post";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
 
         {/* Protected profile route */}
         <Route path="/profile" element={<ProtectedRoute />}>
-          <Route index element={<Profile />} />
+          <Route path="/profile/*" element={<Profile />} />
           <Route path="details" element={<ProfileDetails />} />
           <Route path="settings" element={<ProfileSettings />} />
         </Route>
