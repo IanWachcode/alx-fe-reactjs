@@ -17,16 +17,11 @@ function App() {
         <Route path="/post/:postId" element={<Post />} />
 
         {/* Protected profile route */}
-        <Route
-          path="/profile/*"
-          element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/profile/*" element={<Profile />} />
           <Route path="details" element={<ProfileDetails />} />
           <Route path="settings" element={<ProfileSettings />} />
         </Route>
-
-        {/* Catch-all for 404 */}
-        <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
   );
 }
