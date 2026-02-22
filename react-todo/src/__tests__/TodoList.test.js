@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { test, expect } from '@jest/globals';
-import TodoList from './TodoList';
+import TodoList from '../components/TodoList';
 
 test('renders TodoList with initial todos', () => {
   render(<TodoList />);
